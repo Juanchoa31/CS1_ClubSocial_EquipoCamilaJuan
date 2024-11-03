@@ -11,7 +11,7 @@ class Club {
     }
 
     public boolean addMember(Partner partner) {//agrega nuevo parnter
-        //verifica menos de 35 socios y que no este registrado
+        //verifica que hayan menos de 35 socios y que no este registrado
         if (members.size() < 35 && !members.containsKey(partner.id)) {
             members.put(partner.id, partner);//agrega socio al hashMap
             
