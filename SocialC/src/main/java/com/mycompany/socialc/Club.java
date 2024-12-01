@@ -4,20 +4,20 @@ import java.util.HashMap;
 
 
 class Club {
-    public HashMap<String, Partner> members;//almacena socios del club- clave: id- valor: partner
+    public HashMap<String, Partner> members;
 
-    public Club() {//constructor
-        members = new HashMap<>();//inicializa el HashMap para socios que se agregan al club
+    public Club() {
+        members = new HashMap<>();
     }
 
-    public boolean addMember(Partner partner) {//agrega nuevo parnter
+    public boolean addMember(Partner partner) {
         //verifica que hayan menos de 35 socios y que no este registrado
         if (members.size() < 35 && !members.containsKey(partner.id)) {
             members.put(partner.id, partner);//agrega socio al hashMap
             
-            return true;//agregado exitosamente
+            return true;
         }
-        return false;//si hay mas de 35 socios o el usuario esta registrado
+        return false;   
     }
 
     //eliminar un socio del club
