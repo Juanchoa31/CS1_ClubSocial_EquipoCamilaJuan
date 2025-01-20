@@ -13,12 +13,12 @@ class Guest {
 
     //verifica si tiene factura pte
     public boolean hasUnpaidBill() {
-        return unpaidBill != null;//retorna true si hay factura pte
+        return unpaidBill != null;
         }
 
     //asigna factura pte al invitado
     public void addUnpaidBill(Bill bill) {
-        this.unpaidBill = bill; //Asigna el objeto Bill proporcionado al unpaidBill.
+        this.unpaidBill = bill;
         }
     }
         

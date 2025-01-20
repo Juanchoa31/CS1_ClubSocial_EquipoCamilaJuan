@@ -25,33 +25,32 @@ class Club {
         
         Partner partner = members.get(id);//obtiene socio del hash usando el id
         if (partner == null) {//verifica si el socio esta en el hash
-            return false; //si no se encuentra
+            return false;
         }
-        if (partner.getMembershipType().equals("VIP")) {//veridica si el partner es vip
-            return false; //no se permite eliminar si es vip
+        if (partner.getMembershipType().equals("VIP")) {//verifica si el partner es vip
+            return false;
         }
         if (!partner.unpaidBills.isEmpty()) {//verifica si partner tiene facturas pendientes
-            return false; //debe pagar facturas para poderse eliminar
+            return false;
         }
         if (partner.authorizedGuests.size() > 1) {//verifica si socio tiene mas de un invitado
-            return false; // false si tiene mas de 1 invitado
+            return false;
         }
         members.remove(id);
-        //elimina al socio del hash si cumple con todo
         return true;
     }
     
     //lista los socios registrados en el club
     public String listMembers() {
-        StringBuilder memberList = new StringBuilder("List of Members:\n");//eñ StringBuilder para eliminar socios
-        for (Partner member : members.values()) {//itera sobre cada socio
+        StringBuilder memberList = new StringBuilder("List of Members:\n");//en StringBuilder para eliminar socios
+        for (Partner member : members.values()) {
             memberList.append("ID: ").append(member.id)//agrega id del partner
-                      .append(", Name: ").append(member.name)//agrega nombre del part
+                      .append(", Name: ").append(member.name)//agrega nombre del partner
                       .append(", Type: ").append(member.getMembershipType())//agrega tipo de suscripcion
                       .append(", Available Funds: $").append(member.availableFunds)//agrega fondos disponibles
                       .append("\n");//agrega linea entre socios
         }
-    return memberList.toString();//retorna lista de partner como cadena de texto
+    return memberList.toString();
     }
 }
     

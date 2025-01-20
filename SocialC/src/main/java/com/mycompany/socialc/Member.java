@@ -17,15 +17,15 @@ abstract class Member {
         this.authorizedGuests = new ArrayList<>();
     }
 
-    public abstract String getMembershipType();//metodo que devuelve tipo de membresia
+    public abstract String getMembershipType();
 
     public boolean addAuthorizedGuest(Guest guest) {//metodo para añadir un invitado
         //verifica que invitados sea menor que 10
         if (authorizedGuests.size() < 10) {
             authorizedGuests.add(guest);//añade invitado a la lista
-            return true;//añadido exitosamente
+            return true;
         }
-        return false;//no se puede, hay mas de 10 usuarios invitados
+        return false;
     }
 
     //eliminar un invitado
@@ -34,9 +34,9 @@ abstract class Member {
         if (!guest.hasUnpaidBill() && authorizedGuests.contains(guest)) {
             authorizedGuests.remove(guest);//elimina invitado de lista guest
             
-            return true;//eliminado 
+            return true;
         }
-        return false;//tiene bill ptes o no esta en lista
+        return false;
     }
 }
     

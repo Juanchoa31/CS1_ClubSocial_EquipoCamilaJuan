@@ -8,5 +8,5 @@ public class mainClass {
         HomeViewFormBill hvf = new HomeViewFormBill();
         hvf.setVisible(true);
         hvf.setLocationRelativeTo(null);
-    }//Llama al form principal
+    }
 }

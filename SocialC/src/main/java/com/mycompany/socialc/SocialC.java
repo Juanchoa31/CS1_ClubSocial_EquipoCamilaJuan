@@ -44,38 +44,37 @@ public class SocialC {
 
     //registra un nuevo miembro
     private static void registerMember() {
-        //solicita que ingrese la info solicitada y la guarda en la variable
         
         String id = JOptionPane.showInputDialog("Enter ID:");
         String name = JOptionPane.showInputDialog("Enter name:");
         String type = JOptionPane.showInputDialog("Enter type (VIP/Regular):");
-        Partner partner = new Partner(id, name, type); //crea un parnert con la info que proporcionamos
+        Partner partner = new Partner(id, name, type);
         
         if (club.addMember(partner)) {
-            JOptionPane.showMessageDialog(null, "Member added"); //si el registro es exitoso
+            JOptionPane.showMessageDialog(null, "Member added");
         } else {
-            JOptionPane.showMessageDialog(null, "Error adding member");//error
+            JOptionPane.showMessageDialog(null, "Error adding member");
         }
     }
 
     //registra un invitado autorizado por un partner
     private static void registerGuest() {
         String partnerId = JOptionPane.showInputDialog("Enter member ID:");//id del partner
-        Partner partner = club.members.get(partnerId);//buscando al partner en la lista
+        Partner partner = club.members.get(partnerId);
 
         //verificando si miembro existe en el club
         if (partner == null) {
-            JOptionPane.showMessageDialog(null, "Member not found.");//no encontrad, error y finaliza
+            JOptionPane.showMessageDialog(null, "Member not found.");
             return;
         }
 
-        String guestName = JOptionPane.showInputDialog("Enter guest name:");//solicita nombre invitado y guarda en guest name
-        Guest guest = new Guest(guestName); //crea objeto guest con el name 
+        String guestName = JOptionPane.showInputDialog("Enter guest name:");
+        Guest guest = new Guest(guestName);
         
         if (partner.addAuthorizedGuest(guest)) {
-            JOptionPane.showMessageDialog(null, "Guest added.");//mensaje de exito al registrar el invitado
+            JOptionPane.showMessageDialog(null, "Guest added.");
         } else {
-            JOptionPane.showMessageDialog(null, "Could not add guest.");//mensaje de error al ingresar el invitado
+            JOptionPane.showMessageDialog(null, "Could not add guest.");
         }
     }
 
@@ -89,10 +88,10 @@ public class SocialC {
     //registra un consumo de un partner o un invitado
     private static void registerConsumption() {
         String partnerId = JOptionPane.showInputDialog("Enter member ID:");//id del  miembro que hizo el consumo
-        Partner partner = club.members.get(partnerId);//busca el miembro en la lista
+        Partner partner = club.members.get(partnerId);
 
         if (partner == null) {//verifica si el miembro existe
-            JOptionPane.showMessageDialog(null, "Member not found.");//error, miembro no encontrado, sale.
+            JOptionPane.showMessageDialog(null, "Member not found.");
             return;
         }
 
@@ -103,38 +102,38 @@ public class SocialC {
         //si el campo no esta vacio, se busca el invitado en la lista
         if (!guestName.isEmpty()) { 
             for (Guest g : partner.authorizedGuests) {//recorre la lista de invitados
-                if (g.name.equals(guestName)) {//encuentra y lo asigna a la variable guest
+                if (g.name.equals(guestName)) {//encuentra y lo asigna a la variable guest o invitados
                     guest = g;
                     break;
                 }
             }
             if (guest == null) {
-                JOptionPane.showMessageDialog(null, "Guest not found.");//no encontrado, sale
+                JOptionPane.showMessageDialog(null, "Guest not found.");
                 return;
             }
         }
 
-        //solicita descrip del consumo y la guarda
+        //solicita descripción del consumo y la guarda
         String description = JOptionPane.showInputDialog("Enter consumption description:");
-        //solicita monto del consumo- pasa a valor decimal
+        //solicita monto del consumo y pasa el valor a decimal
         double amount = Double.parseDouble(JOptionPane.showInputDialog("Enter amount of consumption:"));
 
         //intenta registrar consumo
         if (partner.registerConsumption(description, amount, guest)) {
-            JOptionPane.showMessageDialog(null, "Consumption registered.");//se registra consumo
+            JOptionPane.showMessageDialog(null, "Consumption registered.");
         } else {
-            JOptionPane.showMessageDialog(null, "Insufficient funds.");//fondos insuficientes para registrar
+            JOptionPane.showMessageDialog(null, "Insufficient funds.");
         }
     }
 
     //aumentar fondos
     private static void increaseFunds() {
         String partnerId = JOptionPane.showInputDialog("Enter member ID:");//id del partner
-        Partner partner = club.members.get(partnerId);//lo busca en la lista
+        Partner partner = club.members.get(partnerId);
 
         //verificando si existe
         if (partner == null) {
-            JOptionPane.showMessageDialog(null, "Member not found.");//no lo encuentra, error y sale
+            JOptionPane.showMessageDialog(null, "Member not found.");
             return;
         }
         
@@ -142,19 +141,19 @@ public class SocialC {
         double amount = Double.parseDouble(JOptionPane.showInputDialog("Enter amount to add:"));
         
         if (partner.addFunds(amount)) {
-            JOptionPane.showMessageDialog(null, "Funds increased successfully.");//monto agregado
+            JOptionPane.showMessageDialog(null, "Funds increased successfully.");
         } else {
-            JOptionPane.showMessageDialog(null, "Error increasing funds. Please check the limit.");//error si excede limite
+            JOptionPane.showMessageDialog(null, "Error increasing funds. Please check the limit.");
         }
     }
 
     //elimina miembro
     private static void removeMember() {
         String partnerId = JOptionPane.showInputDialog("Enter member ID:");//solicita el id del partner
-        if (club.removeMember(partnerId)) { //llama a removeMember para eliminar usuario por id
-            JOptionPane.showMessageDialog(null, "Member removed successfully.");//miembro eliminado
+        if (club.removeMember(partnerId)){
+            JOptionPane.showMessageDialog(null, "Member removed successfully.");
         } else {
-            JOptionPane.showMessageDialog(null, "Error removing member.");//error
+            JOptionPane.showMessageDialog(null, "Error removing member.");
         }
     }
 }
